@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Modification: Added Chart.js CDN for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Task Manager</h1>
+      <!-- Modification: Added dark mode toggle -->
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider round"></span>
+      </label>
+      <!-- Modification: Added language selector -->
+      <select id="language-select">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <!-- Add more languages as needed -->
+      </select>
+      <!-- Modification: Added dashboard button -->
+      <button id="dashboard-btn">Dashboard</button>
+    </header>
+    <main>
+      <!-- Task Creation Form -->
+      <section id="task-form-section">
+        <h2>Add New Task</h2>
+        <form id="task-form">
+          <div>
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name" name="taskName" required />
+          </div>
+          <div>
+            <label for="task-category">Category:</label>
+            <select id="task-category" name="taskCategory">
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+          </div>
+          <div>
+            <label for="task-deadline">Deadline:</label>
+            <input type="date" id="task-deadline" name="taskDeadline" />
+          </div>
+          <!-- Modification: Added priority selection -->
+          <div>
+            <label for="task-priority">Priority:</label>
+            <select id="task-priority" name="taskPriority">
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <button type="submit">Add Task</button>
+        </form>
+      </section>
+      <!-- Task List -->
+      <section id="task-list-section">
+        <h2>Task List</h2>
+        <div id="search-filter">
+          <input type="text" id="search-bar" placeholder="Search tasks..." />
+          <select id="filter-category">
+            <option value="All">All Categories</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+          <!-- Modification: Added completion status filter -->
+          <select id="filter-status">
+            <option value="All">All Tasks</option>
+            <option value="Completed">Completed</option>
+            <option value="Incomplete">Incomplete</option>
+          </select>
+          <!-- Modification: Added sort by priority dropdown -->
+          <select id="sort-priority">
+            <option value="None">Sort by Priority</option>
+            <option value="High">High to Low</option>
+            <option value="Low">Low to High</option>
+          </select>
+        </div>
+        <ul id="task-list"></ul>
+        <div id="pagination-controls"></div>
+      </section>
+      <!-- Modification: Added dashboard modal -->
+      <div id="dashboard-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Task Overview</h2>
+          <canvas id="tasks-chart"></canvas>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

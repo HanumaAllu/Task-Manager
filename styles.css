@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #ee9595;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+#language-select,
+#dashboard-btn {
+  color: black;
+  background-color: #f4d5d5;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #fdc2c2;
+  border-radius: 10px;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Styling */
+#task-form-section,
+#task-list-section {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fdc2c2;
+}
+
+#search-bar,
+#filter-category,
+#filter-status,
+#sort-priority {
+  border-radius: 10px solid #fdc2c2;
+}
+
+#task-form div {
+  margin-bottom: 15px;
+}
+
+#task-form label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+#task-form input[type="text"],
+#task-form input[type="date"],
+#task-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+#task-form button {
+  padding: 10px 20px;
+  background-color: #f77373;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#task-form button:hover {
+  background-color: #e7a5a5;
+  color: #000;
+}
+
+/* Task List Styling */
+#task-list {
+  list-style: none;
+}
+
+#search-filter {
+  margin-bottom: 10px;
+}
+
+#task-list-section select,
+#search-bar {
+  color: black;
+  background-color: #f4d5d5;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #fdc2c2;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.task-item {
+  background: #fafafa;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-left: 4px solid #f77373;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.task-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.task-item p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.task-actions button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.task-actions .edit-btn {
+  background-color: #ffca28;
+  color: #fff;
+}
+
+.task-actions .delete-btn {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.task-actions .add-subtask-btn {
+  background-color: #888;
+  color: #fff;
+}
+
+.task-actions button:hover {
+  opacity: 0.9;
+  color: #000;
+}
+
+/* Priority Colors */
+.high-priority {
+  border-left-color: #e74c3c;
+}
+
+.medium-priority {
+  border-left-color: #f39c12;
+}
+
+.low-priority {
+  border-left-color: #2ecc71;
+}
+
+/* Completed Task Styling */
+.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* Accordion Subtask Section */
+.subtask-accordion {
+  margin-top: 10px;
+}
+
+.subtask-accordion .accordion-toggle {
+  cursor: pointer;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  text-align: left;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.subtask-accordion .accordion-toggle:hover {
+  background-color: #45a049;
+}
+
+.subtask-accordion .accordion-content {
+  display: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  margin-top: 10px;
+}
+
+.subtask-accordion .accordion-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  #task-form button {
+    width: 100%;
+  }
+
+  .task-actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .task-actions button {
+    width: 100%;
+  }
+}
+
+.switch {
+  position: absolute;
+  top: 20px;
+  right: 100px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f77373;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Pagination Controls Styling */
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#pagination-controls button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: none;
+  background-color: #f77373;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#pagination-controls button.disabled,
+#pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Dark Mode for Modal */
+.modal-content.dark-mode {
+  background-color: #333;
+  color: #f1f1f1;
+}
