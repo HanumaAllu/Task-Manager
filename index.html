@@ -18,10 +18,10 @@
       <!-- Modification: Added language selector -->
       <select id="language-select">
         <option value="en">English</option>
-        <option value="es">Español</option>
+        <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
         <!-- Add more languages as needed -->
       </select>
-      <!-- Modification: Added dashboard button -->
       <button id="dashboard-btn">Dashboard</button>
     </header>
     <main>
@@ -49,12 +49,12 @@
           <div>
             <label for="task-priority">Priority:</label>
             <select id="task-priority" name="taskPriority">
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option id="task-priority-high" value="High">High</option>
+              <option id="task-priority-medium" value="Medium">Medium</option>
+              <option id="task-priority-low" value="Low">Low</option>
             </select>
           </div>
-          <button type="submit">Add Task</button>
+          <button class="primary-button" type="submit">Add Task</button>
         </form>
       </section>
       <!-- Task List -->
@@ -76,7 +76,7 @@
           </select>
           <!-- Modification: Added sort by priority dropdown -->
           <select id="sort-priority">
-            <option value="None">Sort by Priority</option>
+            <option value="None">Sort by Prority</option>
             <option value="High">High to Low</option>
             <option value="Low">Low to High</option>
           </select>

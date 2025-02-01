@@ -70,12 +70,12 @@ languageSelect.addEventListener("change", () => {
   const selectedLanguage = languageSelect.value;
   localStorage.setItem("language", selectedLanguage);
   applyTranslations(selectedLanguage);
-}); 
+});
 // Modification: Added language selector event listener
 dashboardBtn.addEventListener("click", openDashboard); // Modification: Added dashboard button event listener
 closeModal.addEventListener("click", () => {
   dashboardModal.style.display = "none";
-}); 
+});
 // Modification: Added close modal event listener
 // Modification: Request notification permission
 if ("Notification" in window) {
@@ -229,6 +229,16 @@ function updateDisplayedTasks() {
   displayTasks(updatedTasks, currentPage);
 }
 
+//Language
+let currentLanguage = localStorage.getItem("language") || "en"; // Default to English
+
+languageSelect.addEventListener("change", () => {
+  currentLanguage = languageSelect.value;
+  localStorage.setItem("language", currentLanguage);
+  applyTranslations(currentLanguage); // Update UI text
+  updateDisplayedTasks(); // Re-render tasks with new language
+});
+
 // Helper function to render subtasks
 function renderSubtask(subtask) {
   return `
@@ -239,9 +249,17 @@ function renderSubtask(subtask) {
             <h3 ${subtask.completed ? 'class="completed"' : ""}>${
     subtask.name
   }</h3>
-            <p>Category: ${subtask.category}</p>
-            <p>Deadline: ${subtask.deadline || "No deadline"}</p>
-            <p>Priority: ${subtask.priority}</p>
+            <p>${translations[currentLanguage].category}: ${
+    translations[currentLanguage][subtask.category.toLowerCase()] ||
+    subtask.category
+  }</p>
+            <p>${translations[currentLanguage].deadline}: ${
+    subtask.deadline || translations[currentLanguage].noDeadline
+  }</p>
+            <p>${translations[currentLanguage].priority}: ${
+    translations[currentLanguage][subtask.priority.toLowerCase()] ||
+    subtask.priority
+  }</p>
         </li>
     `;
 }
@@ -252,20 +270,37 @@ function renderTask(task) {
   li.classList.add("task-item", task.priority.toLowerCase() + "-priority");
   li.setAttribute("data-id", task.id); // Set the task ID as a data attribute
 
+  // Use translations for displaying task details
+  const categoryLabel = `${translations[currentLanguage].category}: `;
+  const deadlineLabel = `${translations[currentLanguage].deadline}: `;
+  const priorityLabel = `${translations[currentLanguage].priority}: `;
+
+  // Handle deadline display
+  const deadlineDisplay =
+    task.deadline || translations[currentLanguage].noDeadline;
+
   li.innerHTML = `
         <input type="checkbox" class="complete-task" ${
           task.completed ? "checked" : ""
         }>
         <h3 ${task.completed ? 'class="completed"' : ""}>${task.name}</h3>
-        <p>Category: ${task.category}</p>
-        <p>Deadline: ${task.deadline || "No deadline"}</p>
-        <p>Priority: ${task.priority}</p>
+        <p>${categoryLabel}${
+    translations[currentLanguage][task.category.toLowerCase()] || task.category
+  }</p>
+        <p>${deadlineLabel}${deadlineDisplay}</p>
+        <p>${priorityLabel}${
+    translations[currentLanguage][task.priority.toLowerCase()] || task.priority
+  }</p>
         <div class="task-actions">
-            <button class="add-subtask-btn" data-id="${
-              task.id
-            }">Add Subtask</button>
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
+            <button class="add-subtask-btn" data-id="${task.id}">${
+    translations[currentLanguage].addSubtask
+  }</button>
+            <button class="edit-btn">${
+              translations[currentLanguage].edit
+            }</button>
+            <button class="delete-btn">${
+              translations[currentLanguage].delete
+            }</button>
         </div>
     `;
 
@@ -474,7 +509,14 @@ const translations = {
     addNewTask: "Add New Task",
     taskName: "Task Name",
     category: "Category",
+    work: "Work",
+    personal: "Personal",
+    urgent: "Urgent",
     deadline: "Deadline",
+    priority: "Priority",
+    high: "High",
+    medium: "Medium",
+    low: "Low",
     addTask: "Add Task",
     taskList: "Task List",
     searchTasks: "Search tasks...",
@@ -482,20 +524,66 @@ const translations = {
     allTasks: "All Tasks",
     completed: "Completed",
     incomplete: "Incomplete",
+    highToLow: "High to Low",
+    lowToHigh: "Low to High",
+    noDeadline: "No Deadline",
+    addSubtask: "Add Subtask",
+    edit: "Edit",
+    delete: "Delete",
     // ... other translations
   },
-  es: {
-    addNewTask: "Agregar nueva tarea",
-    taskName: "Nombre de la tarea",
-    category: "Categoría",
-    deadline: "Fecha límite",
-    addTask: "Agregar tarea",
-    taskList: "Lista de tareas",
-    searchTasks: "Buscar tareas...",
-    allCategories: "Todas las categorías",
-    allTasks: "Todas las tareas",
-    completed: "Completadas",
-    incomplete: "Incompletas",
+  hi: {
+    addNewTask: "नया कार्य जोड़ें",
+    taskName: "कार्य का नाम",
+    category: "श्रेणी",
+    work: "कार्य",
+    personal: "व्यक्तिगत",
+    urgent: "तत्काल",
+    deadline: "अंतिम तिथि",
+    priority: "प्राथमिकता",
+    high: "उच्च",
+    medium: "मध्यम",
+    low: "निम्न",
+    addTask: "कार्य जोड़ें",
+    taskList: "कार्य सूची",
+    searchTasks: "कार्य खोजें...",
+    allCategories: "सभी श्रेणियाँ",
+    allTasks: "सभी कार्य",
+    completed: "पूर्ण",
+    incomplete: "अपूर्ण",
+    highToLow: "उच्च से निम्न",
+    lowToHigh: "निम्न से उच्च",
+    noDeadline: "कोई समय सीमा नहीं",
+    addSubtask: "उपकार्य जोड़ें",
+    edit: "संपादित करें",
+    delete: "हटाएँ",
+    // ... other translations
+  },
+  te: {
+    addNewTask: "కొత్త పని జోడించండి",
+    taskName: "పనికి పేరు",
+    category: "వర్గం",
+    work: "పని",
+    personal: "వ్యక్తిగత",
+    urgent: "తక్షణం",
+    deadline: "గడువు",
+    priority: "ప్రాధాన్యం",
+    high: "అత్యున్నత",
+    medium: "మధ్యస్థ",
+    low: "తక్కువ",
+    addTask: "పని జోడించండి",
+    taskList: "పనుల జాబితా",
+    searchTasks: "పనులను శోధించండి...",
+    allCategories: "అన్ని వర్గాలు",
+    allTasks: "అన్ని పనులు",
+    completed: "పూర్తయింది",
+    incomplete: "పూర్తి కాలేదు",
+    highToLow: "అత్యున్నత నుండి తక్కువకు",
+    lowToHigh: "తక్కువ నుండి అత్యున్నతకు",
+    noDeadline: "ఏ సమయ పరిమితి లేదు",
+    addSubtask: "ఉపకార్యాన్ని జోడించండి",
+    edit: "సవరించు",
+    delete: "తొలగించు",
     // ... other translations
   },
 };
@@ -506,8 +594,23 @@ function applyTranslations(language) {
     translations[language].taskName + ":";
   document.querySelector('label[for="task-category"]').textContent =
     translations[language].category + ":";
+  document.querySelector('#task-category option[value="Work"]').textContent =
+    translations[language].work;
+  document.querySelector(
+    '#task-category option[value="Personal"]'
+  ).textContent = translations[language].personal;
+  document.querySelector('#task-category option[value="Urgent"]').textContent =
+    translations[language].urgent;
   document.querySelector('label[for="task-deadline"]').textContent =
     translations[language].deadline + ":";
+  document.querySelector('label[for="task-priority"]').textContent =
+    translations[language].priority + ":";
+  document.querySelector('#task-priority option[value="High"]').textContent =
+    translations[language].high;
+  document.querySelector('#task-priority option[value="Medium"]').textContent =
+    translations[language].medium;
+  document.querySelector('#task-priority option[value="Low"]').textContent =
+    translations[language].low;
   document.querySelector('#task-form button[type="submit"]').textContent =
     translations[language].addTask;
   document.querySelector("#task-list-section h2").textContent =
@@ -524,6 +627,10 @@ function applyTranslations(language) {
   document.querySelector(
     '#filter-status option[value="Incomplete"]'
   ).textContent = translations[language].incomplete;
+  document.querySelector('#sort-priority option[value="High"]').textContent =
+    translations[language].highToLow;
+  document.querySelector('#sort-priority option[value="Low"]').textContent =
+    translations[language].lowToHigh;
   // Update other text elements as needed
 }
 
