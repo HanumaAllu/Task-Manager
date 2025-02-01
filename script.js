@@ -162,7 +162,8 @@ function displayTasks(taskArray, pageNumber = currentPage || 1, pageSize = 5) {
   currentPage = pageNumber; // Save the current page number
 
   if (taskArray.length === 0) {
-    taskList.innerHTML = "<p>No tasks to display.</p>";
+    // Use the updated translation for "No tasks to display"
+    taskList.innerHTML = `<p>${translations[currentLanguage].noTasks}</p>`;
     paginationControls.innerHTML = "";
     return;
   }
@@ -524,12 +525,14 @@ const translations = {
     allTasks: "All Tasks",
     completed: "Completed",
     incomplete: "Incomplete",
+    sortByPriority: "Sort by Priority",
     highToLow: "High to Low",
     lowToHigh: "Low to High",
     noDeadline: "No Deadline",
     addSubtask: "Add Subtask",
     edit: "Edit",
     delete: "Delete",
+    noTasks: "No tasks to display.",
     // ... other translations
   },
   hi: {
@@ -551,12 +554,14 @@ const translations = {
     allTasks: "सभी कार्य",
     completed: "पूर्ण",
     incomplete: "अपूर्ण",
+    sortByPriority: "प्राथमिकता के अनुसार छाँटें",
     highToLow: "उच्च से निम्न",
     lowToHigh: "निम्न से उच्च",
     noDeadline: "कोई समय सीमा नहीं",
     addSubtask: "उपकार्य जोड़ें",
     edit: "संपादित करें",
     delete: "हटाएँ",
+    noTasks: "दिखाने के लिए कोई कार्य नहीं है।",
     // ... other translations
   },
   te: {
@@ -578,12 +583,14 @@ const translations = {
     allTasks: "అన్ని పనులు",
     completed: "పూర్తయింది",
     incomplete: "పూర్తి కాలేదు",
+    sortByPriority: "ప్రాధమికత ప్రకారం వర్గీకరించు",
     highToLow: "అత్యున్నత నుండి తక్కువకు",
     lowToHigh: "తక్కువ నుండి అత్యున్నతకు",
     noDeadline: "ఏ సమయ పరిమితి లేదు",
     addSubtask: "ఉపకార్యాన్ని జోడించండి",
     edit: "సవరించు",
     delete: "తొలగించు",
+    noTasks: "చూపించడానికి ఎలాంటి పనులు లేవు.",
     // ... other translations
   },
 };
@@ -627,6 +634,8 @@ function applyTranslations(language) {
   document.querySelector(
     '#filter-status option[value="Incomplete"]'
   ).textContent = translations[language].incomplete;
+  document.querySelector('#sort-priority option[value="None"]').textContent =
+    translations[language].sortByPriority;
   document.querySelector('#sort-priority option[value="High"]').textContent =
     translations[language].highToLow;
   document.querySelector('#sort-priority option[value="Low"]').textContent =
