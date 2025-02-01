@@ -87,6 +87,8 @@ header h1 {
   padding: 5px;
   border: 1px solid var(--second-color);
   border-radius: 10px;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
 }
 
 main {

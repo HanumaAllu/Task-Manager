@@ -56,7 +56,7 @@ Switch between light and dark modes using the theme toggle switch in the setting
 
 ## Language Support
 
-Select your preferred language (English or Spanish) from the language dropdown in the settings. The language preference is saved in `localStorage`, ensuring that the selected language is maintained across sessions.
+Select your preferred language (English or Hindi or Telugu) from the language dropdown in the settings. The language preference is saved in `localStorage`, ensuring that the selected language is maintained across sessions.
 
 ## Dashboard
 
